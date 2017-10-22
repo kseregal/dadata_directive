@@ -1,7 +1,9 @@
-# test_directive
+# Директива для компонента material-auto-suggest-input из пакета angular_components.
 
-Пробная реализация директивы.
-Директива DadataDirective реализует подбор адреса.
+Директива DadataDirective реализует
+
+* подбор адреса.
+
 
 ## Как использовать
 
