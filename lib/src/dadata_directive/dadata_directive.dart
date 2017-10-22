@@ -6,6 +6,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/model/selection/selection_options.dart';
 import 'package:angular_components/model/selection/string_selection_options.dart';
 import 'package:angular_components/material_input/material_auto_suggest_input.dart';
+import 'package:test_directive/src/dadata_directive/dadata_config.dart';
 
 @Directive(selector: '[dadataAddress]')
 class DadataDirective {
@@ -15,7 +16,7 @@ class DadataDirective {
   Map<String,String> _requestHeaders = {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "Authorization": "Token 405b332ee61c7cfb8f03e19a32e86658d808b603"
+    "Authorization": "Token ${DadataConfig.token}"
   };
   /// КЛАДР. Используется для сортировки результатов
   String kladrId = null;
