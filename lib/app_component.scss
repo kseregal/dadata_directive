@@ -1,0 +1,14 @@
+@import 'package:angular_components/css/material/material';
+
+.blue {
+  color: $mat-blue;
+}
+
+:host {
+  .inp {
+    width: $mat-grid * 80;
+  }
+  .address_inp {
+    width: $mat-grid * 80;
+  }
+}

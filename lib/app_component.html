@@ -1,0 +1,11 @@
+<h1>Тестирование директивы подгрузки данных dadata при поиске адреса</h1>
+
+<material-auto-suggest-input class="address_inp"
+                             dadataAddress
+                             [selectionOptions]="options"
+                             [itemRenderer]="itemAddressRenderer"
+                             [componentRenderer]="componentRenderer"
+                             [(inputText)]="inputText"
+                             label="Адрес">
+</material-auto-suggest-input>
+
