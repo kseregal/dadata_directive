@@ -33,12 +33,18 @@ class DadataDirective {
 
   @Input("inputText")
   String addressText;
+  String _autoSugText;
 
-  @HostListener('inputTextChange', const [r'$event'])
-  void inputTextChange(String autoSugText) {
+  Timer _timer=null;
 
+
+  startTimeout() {
+    return new Timer(new Duration(milliseconds: DadataConfig.delay), find);
+  }
+
+  find() {
     Map requestBody = {
-      "query": autoSugText
+      "query": _autoSugText
     };
     if ( kladrId != null ) {
       requestBody["locations_boost"] = [{"kladr_id": kladrId}];
@@ -53,9 +59,23 @@ class DadataDirective {
         },
         body: JSON.encode(requestBody))
         .then((response) {
-          Map respMap = JSON.decode(response.body);
-          List<Map<String, String>> suggList =  respMap["suggestions"];
-          _suggestElem.options = new SelectionOptions([new OptionGroup(suggList)]);
+      Map respMap = JSON.decode(response.body);
+      List<Map<String, String>> suggList =  respMap["suggestions"];
+      _suggestElem.options = new SelectionOptions([new OptionGroup(suggList)]);
     });
+  }
+
+  @HostListener('inputTextChange', const [r'$event'])
+  void inputTextChange(String autoSugText) {
+    _autoSugText = autoSugText;
+    if (_timer!=null && _timer.isActive) {
+      print(_timer.isActive);
+      print('таймер есть');
+      _timer.cancel();
+    }
+
+    _timer = startTimeout();
+
+
   }
 }
