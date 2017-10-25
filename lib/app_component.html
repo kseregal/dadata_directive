@@ -1,11 +1,162 @@
-<h1>Тестирование директивы подгрузки данных dadata при поиске адреса</h1>
-
+<h1>Тестирование директивы dadata</h1>
+<h2>Подсказка адреса</h2>
 <material-auto-suggest-input class="address_inp"
-                             dadataAddress
+                             dadata="address"
+
+                             (blur)="address_blur()"
+                             [selection]="addressSelectionModel"
                              [selectionOptions]="options"
-                             [itemRenderer]="itemAddressRenderer"
-                             [componentRenderer]="componentRenderer"
+                             [itemRenderer]="itemUniversalRenderer"
+                             [componentRenderer]="myComponentRenderer"
                              [(inputText)]="inputText"
                              label="Адрес">
+
+</material-auto-suggest-input>
+<table>
+    <thead>
+        Пример данных из объекта адреса
+    </thead>
+    <tr><td>КЛАДР </td><td>{{cityKladrId}}</td></tr>
+    <tr><td>ФИАС</td><td>{{cityFiasId}}</td></tr>
+    <tr><td>улица</td><td>{{street}}</td></tr>
+    <tr><td>тип улицы</td><td>{{streetTypeFull}}</td></tr>
+</table>
+<h2>Подсказка ФИО</h2>
+<br/>
+<material-auto-suggest-input dadata="surname"
+                             [gender]="gender"
+                             class="address_inp"
+                             (blur)="surname_blur()"
+                             [selection]="surnameSelectionModel"
+                             [selectionOptions]="fioOptions"
+                             [itemRenderer]="itemUniversalRenderer"
+                             [componentRenderer]="myComponentRenderer"
+                             [(inputText)]="fioInputText"
+                             label="Фамилия">
+</material-auto-suggest-input>
+    <br/>
+    <material-auto-suggest-input dadata="name"
+                                 [gender]="gender"
+                                 class="address_inp"
+                                 (blur)="name_blur()"
+                                 [selection]="nameSelectionModel"
+                                 [selectionOptions]="nameOptions"
+                                 [itemRenderer]="itemUniversalRenderer"
+                                 [componentRenderer]="myComponentRenderer"
+                                 [(inputText)]="nameInputText"
+                                 label="Имя">
+
+</material-auto-suggest-input>
+<p> Пол: {{gender}}</p>
+
+<h2>Подсказка Банка</h2>
+
+<br/>
+Ищет кредитные организации:
+<ul>
+    <li>по БИК;</li>
+    <li>SWIFT;</li>
+    <li>названию (полному или краткому);</li>
+    <li>адресу до улицы.</li>
+</ul>
+<material-auto-suggest-input
+                             dadata="bank"
+                             (blur)="bank_blur()"
+                             [selection]="bankSelectionModel"
+                             [selectionOptions]="bankOptions"
+                             [itemRenderer]="itemUniversalRenderer"
+                             [componentRenderer]="bankComponentRenderer"
+                             [(inputText)]="bankInputText"
+                             label="Банк"
+                             class="bank_inp">
+
+</material-auto-suggest-input>
+<div *ngIf="bank != null">{{bank.name}}
+    <table style="background-color: antiquewhite">
+        <tr>
+            <td>Коротое</td><td>{{bank.name}}</td>
+        </tr>
+        <tr>
+            <td>Длинное</td><td>{{bank.fullName}}</td>
+        </tr>
+        <tr>
+            <td>БИК</td><td>{{bank.bic}}</td>
+        </tr>
+        <tr>
+            <td>Банковский идентификационный код в системе SWIFT</td><td>{{bank.swift}}</td>
+        </tr>
+        <tr>
+            <td>ОКПО</td><td>{{bank.name}}</td>
+        </tr>
+        <tr>
+            <td>Корреспондентский счет в ЦБ РФ</td><td>{{bank.correspondentAccount}}</td>
+        </tr>
+        <tr>
+            <td>Регистрационный номер в ЦБ РФ</td><td>{{bank.registrationNumber}}</td>
+        </tr>
+        <tr>
+            <td>Статус организации</td><td>{{bank.stateStatus}}</td>
+        </tr>
+        <tr>
+            <td>Адрес регистрации одной строкой</td><td>{{bank.addressOneString}}</td>
+        </tr>
+    </table>
+</div>
+
+<h2>Подсказка организации</h2>
+Ищет организации и индивидуальных предпринимателей:
+<ul>
+
+
+    <li>по ИНН / ОГРН;</li>
+    <li>названию (полному, краткому, латинскому);</li>
+    <li>ФИО (для индивидуальных предпринимателей);</li>
+    <li>ФИО руководителя компании;</li>
+    <li>адресу до улицы.</li>
+</ul>
+<material-auto-suggest-input
+        dadata="jur"
+        (blur)="jur_blur()"
+        [selection]="jurSelectionModel"
+        [selectionOptions]="jurOptions"
+        [itemRenderer]="itemUniversalRenderer"
+        [componentRenderer]="jurComponentRenderer"
+        [(inputText)]="jurInputText"
+        label="Организация"
+        class="inp">
+
 </material-auto-suggest-input>
 
+<div *ngIf="organization != null">{{organization.name}}
+    <table style="background-color: lightgreen">
+        <tr>
+            <td>Коротое</td><td>{{organization.name}}</td>
+        </tr>
+        <tr>
+            <td>Длинное</td><td>{{organization.fullName}}</td>
+        </tr>
+        <tr>
+            <td>ИНН</td><td>{{organization.inn}}</td>
+        </tr>
+        <tr>
+            <td>ФИО руководителя</td><td>{{organization.managementName}}</td>
+        </tr>
+        <tr>
+            <td>Статус организации</td><td>{{organization.stateStatus}}</td>
+        </tr>
+        <tr>
+            <td>Адрес регистрации одной строкой</td><td>{{organization.address}}</td>
+        </tr>
+    </table>
+</div>
+<h2>Подсказка ввода Email</h2>
+<material-auto-suggest-input
+        dadata="email"
+        [selectionOptions]="emailOptions"
+        [itemRenderer]="itemUniversalRenderer"
+        [componentRenderer]="myComponentRenderer"
+        [(inputText)]="emailInputText"
+        label="Email"
+        class="inp">
+
+</material-auto-suggest-input>
