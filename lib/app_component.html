@@ -1,8 +1,24 @@
 <h1>Тестирование директивы dadata</h1>
+<h2>Подсказка города</h2>
+<material-auto-suggest-input class="address_inp"
+                             dadata="city"
+                             dadata-delay="500"
+                             dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
+
+                             [selection]="citySelectionModel"
+                             [selectionOptions]="cityOptions"
+                             [itemRenderer]="itemCityRenderer"
+                             [componentRenderer]="myComponentRenderer"
+                             [(inputText)]="cityInputText"
+                             label="Город">
+
+</material-auto-suggest-input>
+
 <h2>Подсказка адреса</h2>
 <material-auto-suggest-input class="address_inp"
                              dadata="address"
-
+                             dadata-delay="500"
+                             dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
                              (blur)="address_blur()"
                              [selection]="addressSelectionModel"
                              [selectionOptions]="options"
@@ -10,6 +26,7 @@
                              [componentRenderer]="myComponentRenderer"
                              [(inputText)]="inputText"
                              label="Адрес">
+
 
 </material-auto-suggest-input>
 <table>
@@ -24,6 +41,8 @@
 <h2>Подсказка ФИО</h2>
 <br/>
 <material-auto-suggest-input dadata="surname"
+                             dadata-delay="500"
+                             dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
                              [gender]="gender"
                              class="address_inp"
                              (blur)="surname_blur()"
@@ -36,6 +55,8 @@
 </material-auto-suggest-input>
     <br/>
     <material-auto-suggest-input dadata="name"
+                                 dadata-delay="500"
+                                 dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
                                  [gender]="gender"
                                  class="address_inp"
                                  (blur)="name_blur()"
@@ -61,6 +82,8 @@
 </ul>
 <material-auto-suggest-input
                              dadata="bank"
+                             dadata-delay="500"
+                             dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
                              (blur)="bank_blur()"
                              [selection]="bankSelectionModel"
                              [selectionOptions]="bankOptions"
@@ -115,7 +138,9 @@
     <li>адресу до улицы.</li>
 </ul>
 <material-auto-suggest-input
-        dadata="jur"
+        dadata="legal_entity"
+        dadata-delay="500"
+        dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
         (blur)="jur_blur()"
         [selection]="jurSelectionModel"
         [selectionOptions]="jurOptions"
@@ -152,6 +177,8 @@
 <h2>Подсказка ввода Email</h2>
 <material-auto-suggest-input
         dadata="email"
+        dadata-delay="500"
+        dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
         [selectionOptions]="emailOptions"
         [itemRenderer]="itemUniversalRenderer"
         [componentRenderer]="myComponentRenderer"

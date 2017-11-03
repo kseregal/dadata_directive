@@ -1,13 +1,13 @@
 import 'package:angular/angular.dart';
-import 'dart:convert';
+//import 'dart:convert';
 import 'package:angular_components/angular_components.dart';
 import 'package:angular_components/material_input/material_auto_suggest_input.dart';
-import 'package:angular_components/model/selection/select.dart';
+//import 'package:angular_components/model/selection/select.dart';
 import 'package:angular_components/model/selection/selection_model.dart';
 import 'package:angular_components/model/selection/selection_options.dart';
 import 'package:angular_components/model/ui/has_renderer.dart';
-import 'package:angular_components/model/selection/string_selection_options.dart';
-import 'package:test_directive/src/dadata_directive/dadata_directive.dart';
+//import 'package:angular_components/model/selection/string_selection_options.dart';
+import 'package:dadata_directive2/src/dadata_directive.dart';
 import 'package:test_directive/src/bank/bank.dart';
 import 'package:test_directive/src/jur/jur.dart';
 
@@ -31,6 +31,16 @@ class AppComponent {
       gender = model.selectedValues.first['data']['gender'] ?? null;
     }
   }
+
+  /// Для города:
+  /// Пустой список. Необходим для инициализации.
+  SelectionOptions cityOptions = new SelectionOptions([new OptionGroup<List<int>>(const <List<int>>[]) ]);
+  String cityInputText;
+  /// Геттер класса реализации отрисовки элементов списка.
+  SelectionModel citySelectionModel = new SelectionModel.withList(allowMulti: false);
+  /// Обработка события выбора элемента списка подсказок.
+
+  ItemRenderer get itemCityRenderer => _itemCityRenderer;
 
   /// Для адреса:
   String cityKladrId;
@@ -101,6 +111,11 @@ class AppComponent {
   String emailInputText;
   final SelectionModel emailSelectionModel = new SelectionModel.withList(allowMulti: false);
 }
+
+
+ItemRenderer _itemCityRenderer = ( Map<String, dynamic> itemMap) {
+  return itemMap['data']['city_with_type'] ?? "";
+};
 
 // Вынесено вне классов, т.к используется и в AppComponent, и в OneRowRendererComponent.
 /// Извлекает данные из хэша данные автоподсказки.
