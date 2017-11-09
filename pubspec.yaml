@@ -13,7 +13,7 @@ dependencies:
   angular: ^4.0.0
   angular_components: ^0.8.0
   dadata_directive2:
-    ##path: D:/DOCS/IdeaProjects/DDART/kseregal/dadata_directive2/
+    #path: ../dadata_directive2
     git: https://github.com/kseregal/dadata_directive2.git
 
 dev_dependencies:

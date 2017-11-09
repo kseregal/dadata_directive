@@ -1,4 +1,19 @@
 <h1>Тестирование директивы dadata</h1>
+<h2>Подсказка региона</h2>
+<material-auto-suggest-input class="address_inp"
+                             dadata="region"
+                             dadata-delay="500"
+                             dadata-token="405b332ee61c7cfb8f03e19a32e86658d808b603"
+
+                             [selection]="regionSelectionModel"
+                             [selectionOptions]="regionOptions"
+                             [itemRenderer]="itemRegionRenderer"
+                             [componentRenderer]="myComponentRenderer"
+                             [(inputText)]="regionInputText"
+                             label="Регион">
+
+</material-auto-suggest-input>
+
 <h2>Подсказка города</h2>
 <material-auto-suggest-input class="address_inp"
                              dadata="city"
